@@ -16,7 +16,7 @@
                 <td class="name">{{row.name}}</td>
                 <td class="cpf">{{row.cpf}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editClient(row.id)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="showDialog(row.id)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="confirm2(row.id, row.name)"></button>
                 </td>
             </tr>
@@ -28,3 +28,92 @@
 </div>
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+
+<p-dialog [header]="title" [(visible)]="display" [style]="{width: '800px'}">
+    <div class="p-fluid p-grid">
+        <div class="p-field p-col-4 p-md-2">
+            <span class="p-float-label">
+                <input type="text" id="id" pInputText [(ngModel)]="id"> 
+                <label for="id">Código</label>
+            </span>
+        </div>
+        <div class="p-field p-col-7 p-md-7">
+            <span class="p-float-label">
+                <input type="text" id="name" pInputText [(ngModel)]="name"> 
+                <label for="name">Nome</label>
+            </span>
+        </div>
+        <div class="p-field p-col-4 p-md-4">
+            <span class="p-float-label p-input-icon-right">
+                <p-inputMask inputId="cpf" mask="999.999.999-99" [(ngModel)]="cpf"></p-inputMask>
+                <label for="cpf">CPF</label>
+            </span>
+        </div>
+        <div class="p-field p-col-4 p-md-4">
+            <span class="p-float-label p-input-icon-right">
+                <p-inputMask inputId="rg" mask="9.999.999-9" [(ngModel)]="rg"></p-inputMask> 
+                <label for="rg">RG</label>
+            </span>
+        </div>
+        <div class="p-field p-col-3 p-md-3">
+            <span class="p-float-label">
+                <p-calendar inputId="calendar" [(ngModel)]="birthdate"></p-calendar>
+                <label for="calendar">Nascimento</label>
+            </span>
+        </div>
+        <div class="p-field p-col-7 p-md-7">
+            <span class="p-float-label">
+                <input type="text" id="address" pInputText [(ngModel)]="address"> 
+                <label for="address">Endereço</label>
+            </span>
+        </div>
+        <div class="p-field p-col-5 p-md-5">
+            <span class="p-float-label">
+                <input type="text" id="complement" pInputText [(ngModel)]="complement"> 
+                <label for="complement">Complemento</label>
+            </span>
+        </div>
+        <div class="p-field p-col-4 p-md-4">
+            <span class="p-float-label">
+                <input type="text" id="district" pInputText [(ngModel)]="district"> 
+                <label for="district">Bairro</label>
+            </span>
+        </div>
+        <div class="p-field p-col-3 p-md-3">
+            <span class="p-float-label">
+                <input type="text" id="cep" pInputText [(ngModel)]="cep"> 
+                <label for="cep">CEP</label>
+            </span>
+        </div>
+        <div class="p-field p-col-3 p-md-3">
+            <span class="p-float-label">
+                <input type="text" id="city" pInputText [(ngModel)]="city"> 
+                <label for="city">Cidade</label>
+            </span>
+        </div>
+        <div class="p-field p-col-2 p-md-2">
+            <span class="p-float-label">
+                <p-inputMask inputId="uf" mask="AA" [(ngModel)]="uf"></p-inputMask>
+                <label for="uf">UF</label>
+            </span>
+        </div>
+        <div class="p-field p-col-4 p-md-4">
+            <span class="p-float-label">
+                <p-inputMask inputId="phone" mask="(99) 9999-9999" [(ngModel)]="phone"></p-inputMask>
+                <label for="phone">Telefone</label>
+            </span>
+        </div>
+        <div class="p-field p-col-4 p-md-4">
+            <span class="p-float-label">
+                <p-inputMask inputId="cellphone" mask="(99)9 9999-9999" [(ngModel)]="cellphone"></p-inputMask>
+                <label for="cellphone">Celular</label>
+            </span>
+        </div>
+        <div class="p-field p-col-12 p-md-4">
+            <span class="p-float-label">
+                <textarea inputId="observation" rows="3" style="resize: none;" cols="30" [(ngModel)]="observation" pInputTextarea></textarea>
+                <label for="observation">Observação</label>
+            </span>
+        </div>
+    </div>
+</p-dialog>

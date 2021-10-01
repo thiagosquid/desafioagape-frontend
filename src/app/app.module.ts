@@ -26,6 +26,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -47,7 +48,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     SidebarModule,
     TableModule,
     PaginatorModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule
   ],
   providers: [LoginService, ClientsService
 ],

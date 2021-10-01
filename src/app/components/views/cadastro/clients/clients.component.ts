@@ -16,6 +16,25 @@ export class ClientsComponent implements OnInit {
     currentPage: number = 0;
     totalRecords!: number;
     rows: number = 10;
+    display: boolean = false;
+
+    id?: string;
+    name!: string;
+    cpf!: string;
+    rg!: string;
+    birthdate?: string;
+    address?: string;
+    complement?: string;
+    district!: string;
+    cep!: string;
+    city!: string;
+    uf!: string;
+    phone?: string;
+    cellphone!: string;
+    observation?: string;
+
+    title: string = "TESTE"
+
 
     constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
@@ -85,9 +104,15 @@ export class ClientsComponent implements OnInit {
             // }
         });
     }
+
+    showDialog(id: number){
+
+        this.display = true;
+    }
+
 }
 
-function reject(arg0: { message: string; header: string; icon: string; accept: void; }, reject: any, arg2: (type: any) => void) {
-    throw new Error('Function not implemented.');
-}
+// function reject(arg0: { message: string; header: string; icon: string; accept: void; }, reject: any, arg2: (type: any) => void) {
+//     throw new Error('Function not implemented.');
+// }
 
