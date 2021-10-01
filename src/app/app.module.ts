@@ -25,8 +25,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
 
 
 @NgModule({
@@ -47,14 +47,10 @@ import {ConfirmationService, MessageService} from 'primeng/api';
     SidebarModule,
     TableModule,
     PaginatorModule,
-    ConfirmDialogModule,
-    ConfirmationService,
-    MessageService
+    ConfirmDialogModule
   ],
-  providers: [LoginService, ClientsService,
-    ConfirmDialogModule,
-    ConfirmationService,
-    MessageService],
+  providers: [LoginService, ClientsService
+],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

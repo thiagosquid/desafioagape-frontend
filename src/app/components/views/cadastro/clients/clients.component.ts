@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService,ConfirmEventType, MessageService } from 'primeng/api';
+import { ConfirmEventType, MessageService, ConfirmationService } from 'primeng/api';
 import { ClientsService } from 'src/app/services/clients.service';
 import { Clients } from './clients.model';
 
@@ -38,20 +38,21 @@ export class ClientsComponent implements OnInit {
     }
 
     editClient(_id: any){
-        alert("editar")
+        this.confirm1();
     }
 
     deleteClient(_id: any){
-        console.log(_id)
+        this.service.deleteClient(_id).subscribe(sucess => this.ngOnInit())
     }
 
     confirm1() {
+
         this.confirmationService.confirm({
             message: 'Are you sure that you want to proceed?',
             header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
+                this.messageService.add({severity:'info', summary:'Confirmado', detail:'Usuário deletado'});
             },
             reject: (type: any) => {
                 switch(type) {
@@ -65,25 +66,28 @@ export class ClientsComponent implements OnInit {
             }
         });
     }
-    confirm2() {
+    confirm2(_id: any, name: string) {
         this.confirmationService.confirm({
-            message: 'Do you want to delete this record?',
-            header: 'Delete Confirmation',
+            message: `Tem certeza que deseja deletar o cliente ${name}`,
+            header: 'Confirmação de Delete',
             icon: 'pi pi-info-circle',
-            accept: () => {
-                this.messageService.add({severity:'info', summary:'Confirmed', detail:'Record deleted'});
-            },
-            reject: (type: any) => {
-                switch(type) {
-                    case ConfirmEventType.REJECT:
-                        this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-                    break;
-                    case ConfirmEventType.CANCEL:
-                        this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-                    break;
-                }
-            }
+            accept: () => this.deleteClient(_id),
+            
+            // reject: (type: any) => {
+            //     switch(type) {
+            //         case ConfirmEventType.REJECT:
+            //             this.messageService.add({severity:'error', summary:'Rejeitado', detail:'Você rejeitou'});
+            //         break;
+            //         case ConfirmEventType.CANCEL:
+            //             this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou'});
+            //         break;
+            //     }
+            // }
         });
     }
+}
+
+function reject(arg0: { message: string; header: string; icon: string; accept: void; }, reject: any, arg2: (type: any) => void) {
+    throw new Error('Function not implemented.');
 }
 

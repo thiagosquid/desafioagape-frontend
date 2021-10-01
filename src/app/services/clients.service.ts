@@ -17,4 +17,9 @@ export class ClientsService {
     const url = `${this.baseUrl}/clients${page}`;
     return this.http.get<Clients[]>(url);
   }
+
+  deleteClient(id: number) {
+    const url = `${this.baseUrl}/clients/${id}`;
+    return this.http.delete(url).pipe();
+  }
 }
