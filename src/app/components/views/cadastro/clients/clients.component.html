@@ -1,0 +1,32 @@
+<div class="table">
+    
+
+    <p-table [value]="clients" responsiveLayout="scroll" [rows]="10" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th class="idCode">Código</th>
+                <th class="name">Nome</th>
+                <th class="cpf">CPF</th>
+                <th class="actions">Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row >
+            <tr>
+                <td class="idCode">{{row.id}}</td>
+                <td class="name">{{row.name}}</td>
+                <td class="cpf">{{row.cpf}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editClient(row.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClient(row.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+    <p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" ></p-paginator>
+
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-button (click)="confirm1()" icon="pi pi-check" label="Confirm" styleClass="p-mr-2"></p-button>
+<p-button (click)="confirm2()" icon="pi pi-times" label="Delete"></p-button>

@@ -1,0 +1,37 @@
+span{
+  margin-bottom: 30px;
+}
+
+p-inputMask{
+  width: 401px;
+}
+
+
+div{
+  background-color: aquamarine;
+  padding: 50px;
+  min-width: 380px;
+  max-width: 650px;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px;
+}
+
+#picture{
+  width: 50%;
+  height: 150px;
+  background-color: bisque;
+  display: inline-block;
+}
+
+#form{
+  display: inline-block;
+}
+
+.p-button-danger{
+  margin-left: 50px;
+}
+
+.p-button-primary{
+  width: 90px;
+}

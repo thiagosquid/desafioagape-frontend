@@ -1,0 +1,19 @@
+button{
+    margin-right: 15px;
+}
+
+.idCode{
+    width: 25%;
+}
+
+.name{
+    width: 30%;
+}
+
+.cpf{
+    width: 30%;
+}
+
+.actions{
+    width: 20%;
+}

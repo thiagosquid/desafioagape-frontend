@@ -1,0 +1,14 @@
+<ng-template [ngIf]="!userActive" [ngIfElse]="main">
+
+    <app-login></app-login>
+
+</ng-template>
+
+<ng-template #main>
+
+    <app-header ></app-header>
+    <app-menu></app-menu>
+    
+
+</ng-template>
+
