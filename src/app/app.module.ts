@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -15,10 +16,9 @@ import { LoginService } from "./components/views/login/login.service";
 
 import { AccordionModule } from "primeng/accordion";
 import { InputTextModule } from "primeng/inputtext";
-import { PasswordModule } from "primeng/password";
-import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputMaskModule } from "primeng/inputmask";
+import { PasswordModule } from "primeng/password";
 import { HttpClientModule } from "@angular/common/http";
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -27,6 +27,7 @@ import { TableModule } from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
+import {CalendarModule} from 'primeng/calendar';
 
 
 
@@ -49,7 +50,8 @@ import {DialogModule} from 'primeng/dialog';
     TableModule,
     PaginatorModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    CalendarModule
   ],
   providers: [LoginService, ClientsService
 ],

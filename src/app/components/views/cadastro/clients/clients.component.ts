@@ -33,12 +33,14 @@ export class ClientsComponent implements OnInit {
     cellphone!: string;
     observation?: string;
 
-    title: string = "TESTE"
+    title: string = "Edição de Cliente";
+    maxDateValue: Date;
 
 
-    constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+    constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) {
+        this.maxDateValue = new Date(); }
 
-    ngOnInit() {
+    ngOnInit() {        
         this.getClients(this.currentPage);    
     }
 
@@ -56,15 +58,16 @@ export class ClientsComponent implements OnInit {
         this.getClients(this.currentPage++);
     }
 
-    editClient(_id: any){
-        this.confirm1();
+    editClient(_id: string){
+        this.confirm1(_id);
     }
 
     deleteClient(_id: any){
         this.service.deleteClient(_id).subscribe(sucess => this.ngOnInit())
     }
 
-    confirm1() {
+    confirm1(_id: string) {
+        
 
         this.confirmationService.confirm({
             message: 'Are you sure that you want to proceed?',
@@ -106,7 +109,6 @@ export class ClientsComponent implements OnInit {
     }
 
     showDialog(id: number){
-
         this.display = true;
     }
 

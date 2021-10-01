@@ -17,3 +17,16 @@ button{
 .actions{
     width: 20%;
 }
+
+.form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.p-col-fixed{
+    display: inline-block;
+}
+
+.save, .delete{
+    margin: 30px 10px;
+}
