@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ConfirmEventType, MessageService, ConfirmationService } from 'primeng/api';
 import { ClientsService } from 'src/app/services/clients.service';
 import { Clients } from './clients.model';
@@ -11,13 +12,12 @@ import { Clients } from './clients.model';
   providers: [ConfirmationService,MessageService]
 })
 export class ClientsComponent implements OnInit {
-  
+
     clients!: Clients[];
     currentPage: number = 0;
     totalRecords!: number;
     rows: number = 10;
     display: boolean = false;
-
     id?: string;
     name!: string;
     cpf!: string;
@@ -32,6 +32,7 @@ export class ClientsComponent implements OnInit {
     phone?: string;
     cellphone!: string;
     observation?: string;
+    date!: Date;
 
     title: string = "Edição de Cliente";
     maxDateValue: Date;
@@ -44,6 +45,14 @@ export class ClientsComponent implements OnInit {
         this.getClients(this.currentPage);    
     }
 
+    saveClient(): any{
+
+        let clientToSave: Clients = new Clients("", this.name, this.cpf, this.rg, this.date.toLocaleDateString(), this.address == undefined ? "" : "", this.complement == undefined ? "" : "", this.district, this.cep, this.city, this.uf, this.phone == undefined ? "" : "", this.cellphone, this.observation == undefined ? "" : "");
+        console.log(clientToSave);
+        this.display = false;
+        
+    }
+
     getClients(index: number) {
         this.service.getClients(index).subscribe((response) => {
             let data: any = response;
@@ -51,44 +60,69 @@ export class ClientsComponent implements OnInit {
             this.clients = data.content;
             this.currentPage = data.number;
         });
-      }
+    }
 
     paginate(event: any) {
         this.currentPage = event.page;
         this.getClients(this.currentPage++);
     }
 
-    editClient(_id: string){
-        this.confirm1(_id);
+    editClient(clientSelected: Clients){
+
+        this.edit(clientSelected);
     }
 
     deleteClient(_id: any){
         this.service.deleteClient(_id).subscribe(sucess => this.ngOnInit())
     }
 
-    confirm1(_id: string) {
-        
+    edit(clientSelected: any) {
+        this.display = false;
 
         this.confirmationService.confirm({
-            message: 'Are you sure that you want to proceed?',
-            header: 'Confirmation',
+            message: `Tem certeza que deseja editar o cliente ${clientSelected.name}?`,
+            header: 'Confirmação',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.messageService.add({severity:'info', summary:'Confirmado', detail:'Usuário deletado'});
+                const dateClient = clientSelected.birthdate.split("-");
+                this.date = new Date(dateClient[0], dateClient[1]-1, dateClient[2]);
+                this.id = this.pad(clientSelected.id);
+                // let s = this.id+"";
+                // while (s.length < 6) s = "0" + s;
+
+                // this.id = s;
+                this.name = clientSelected.name;
+                this.cpf = clientSelected.cpf;
+                this.address = clientSelected.address;
+                this.rg = clientSelected.rg;
+                this.complement = clientSelected.complement;
+                this.district = clientSelected.district;
+                this.cep = clientSelected.cep;
+                this.city = clientSelected.city;
+                this.uf = clientSelected.uf;
+                this.phone = clientSelected.phone;
+                this.cellphone = clientSelected.cellphone;
+                this.observation = clientSelected.observation;
+
+                this.display = true;
+                this.messageService.add({severity:'info', summary:'Confirmado', detail:'Usuário Editado'});
             },
             reject: (type: any) => {
                 switch(type) {
-                    case ConfirmEventType.REJECT:
-                        this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
+                    case ConfirmEventType.ACCEPT:
+                        this.messageService.add({severity:'error', summary:'Aceito', detail:'Você editou!'});
                     break;
                     case ConfirmEventType.CANCEL:
-                        this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
+                        this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou a edição'});
+                    break;
+                    case ConfirmEventType.REJECT:
+                        this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou a edição'});
                     break;
                 }
             }
         });
     }
-    confirm2(_id: any, name: string) {
+    delete(_id: any, name: string) {
         this.confirmationService.confirm({
             message: `Tem certeza que deseja deletar o cliente ${name}`,
             header: 'Confirmação de Delete',
@@ -108,13 +142,34 @@ export class ClientsComponent implements OnInit {
         });
     }
 
-    showDialog(id: number){
+    showDialog(client: Clients){
+        this.editClient(client);
+    }
+    
+    newClient(){
         this.display = true;
+        this.date = new Date();
+        this.id = ""; 
+        this.name = "";
+        this.cpf = "";
+        this.address = "";
+        this.rg = "";
+        this.complement = "";
+        this.district = "";
+        this.cep = "";
+        this.city = "";
+        this.uf = "";
+        this.phone = "";
+        this.cellphone = "";
+        this.observation = "";
     }
 
+    pad(value: string){
+        return  ("000000" + value).slice(-6).slice(0,3)+"."+("000000" + value).slice(-3)
+    }
+
+    
 }
 
-// function reject(arg0: { message: string; header: string; icon: string; accept: void; }, reject: any, arg2: (type: any) => void) {
-//     throw new Error('Function not implemented.');
-// }
+
 

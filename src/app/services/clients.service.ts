@@ -13,7 +13,7 @@ export class ClientsService {
   constructor(private http: HttpClient) { }
 
   getClients(index: number): Observable<Clients[]> {
-    const page: String = `?page=${index}&size=10`
+    const page: String = `?page=${index}&size=10&sort=id`
     const url = `${this.baseUrl}/clients${page}`;
     return this.http.get<Clients[]>(url);
   }
@@ -22,4 +22,10 @@ export class ClientsService {
     const url = `${this.baseUrl}/clients/${id}`;
     return this.http.delete(url).pipe();
   }
+
+  updateClient(client: Clients){
+    const url = `${this.baseUrl}/clients/${client.id}`;
+    return this.http.put(url, client).pipe();
+  }
+
 }

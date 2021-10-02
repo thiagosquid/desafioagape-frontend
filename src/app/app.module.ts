@@ -11,7 +11,7 @@ import { ClientsService } from "./services/clients.service";
 import { ClientsComponent } from './components/views/cadastro/clients/clients.component';
 import { MenuComponent } from './components/templates/menu/menu.component';
 import { LoginComponent } from "./components/views/login/login.component";
-import { LoginService } from "./components/views/login/login.service";
+import { LoginService } from "./services/login.service";
 
 
 import { AccordionModule } from "primeng/accordion";
