@@ -35,15 +35,19 @@ export class ClientsComponent implements OnInit {
     date!: Date;
 
     title: string = "Edição de Cliente";
-    maxDateValue: Date;
+    maxDate!: Date;
+    minDate!: Date;
 
     isEditing: boolean = false;
 
 
-    constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) {
-        this.maxDateValue = new Date(); }
+    constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
     ngOnInit() {        
+        this.minDate = new Date(1950, 0, 1);
+        this.maxDate = new Date();
+        console.log(this.maxDate)
+        console.log(this.minDate)
         this.getClients(this.currentPage);    
     }
 

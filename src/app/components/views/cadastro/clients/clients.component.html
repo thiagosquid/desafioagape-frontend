@@ -45,31 +45,31 @@
 
         <div class="p-col-fixed" style="width:560px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <input type="text" id="name" pInputText [(ngModel)]="name"> 
+                <input type="text" id="name" pInputText [(ngModel)]="name" [required]=true> 
                 <label for="name">Nome</label>
             </span>
         </div>
         <div class="p-col-fixed" style="width:250px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2030" inputId="navigators" [(ngModel)]="date" dateFormat="dd/mm/yy" [baseZIndex]=0></p-calendar>
+                <p-calendar [monthNavigator]="true" [yearNavigator]="true" [minDate]="minDate" [maxDate]="maxDate" inputId="navigators" [(ngModel)]="date" dateFormat="dd/mm/yy" [baseZIndex]=0></p-calendar>
                 <label for="calendar">Nascimento</label>
             </span>
         </div>
         <div class="p-col-fixed" style="width:220px; margin: 10px 20px 20px 0">
             <span class="p-float-label p-input-icon-right">
-                <p-inputMask inputId="cpf" mask="999.999.999-99" [unmask]="true" [(ngModel)]="cpf"></p-inputMask>
+                <p-inputMask inputId="cpf" mask="999.999.999-99" [unmask]="true" [(ngModel)]="cpf"  [required]="true"></p-inputMask>
                 <label for="cpf">CPF</label>
             </span>
         </div>
         <div class="p-col-fixed" style="width:220px; margin: 10px 20px 20px 0">
             <span class="p-float-label p-input-icon-right">
-                <p-inputMask inputId="rg" mask="9.999.999-9" [unmask]="true" [(ngModel)]="rg"></p-inputMask> 
+                <p-inputMask inputId="rg" mask="9.999.999-9" [unmask]="true" [(ngModel)]="rg" [required]="true"></p-inputMask> 
                 <label for="rg">RG</label>
             </span>
         </div>
         <div class="p-col-fixed" style="width:410px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <input type="text" id="address" pInputText [(ngModel)]="address"> 
+                <input type="text" id="address" pInputText [(ngModel)]="address" [required]="true"> 
                 <label for="address">Endereço</label>
             </span>
         </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="p-col-fixed" style="width:200px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <input type="text" id="district" pInputText [(ngModel)]="district"> 
+                <input type="text" id="district" pInputText [(ngModel)]="district"  [required]="true"> 
                 <label for="district">Bairro</label>
             </span>
         </div>
@@ -93,13 +93,13 @@
         </div>
         <div class="p-col-fixed" style="width:200px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <input type="text" id="city" pInputText [(ngModel)]="city"> 
+                <input type="text" id="city" pInputText [(ngModel)]="city" [required]="true"> 
                 <label for="city">Cidade</label>
             </span>
         </div>
         <div class="p-col-fixed" style="width:70px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-inputMask inputId="uf" mask="aa" [(ngModel)]="uf"></p-inputMask>
+                <p-inputMask inputId="uf" mask="aa" [(ngModel)]="uf" [required]="true"></p-inputMask>
                 <label for="uf">UF</label>
             </span>
         </div>
@@ -111,7 +111,7 @@
         </div>
         <div class="p-col-fixed" style="width:200px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-inputMask inputId="cellphone" mask="(99)99999-9999" [unmask]="true" [(ngModel)]="cellphone"></p-inputMask>
+                <p-inputMask inputId="cellphone" mask="(99)99999-9999" [unmask]="true" [(ngModel)]="cellphone" [required]="true"></p-inputMask>
                 <label for="cellphone">Celular</label>
             </span>
         </div>

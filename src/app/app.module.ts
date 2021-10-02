@@ -2,16 +2,18 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
+import {DropdownModule} from 'primeng/dropdown';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/templates/header/header.component";
 import { HomeComponent } from "./components/views/home/home.component";
 import { ClientsService } from "./services/clients.service";
+import { LoginService } from "./services/login.service";
 import { ClientsComponent } from './components/views/cadastro/clients/clients.component';
 import { MenuComponent } from './components/templates/menu/menu.component';
 import { LoginComponent } from "./components/views/login/login.component";
-import { LoginService } from "./services/login.service";
+import { ClientsReportComponent } from "./components/views/reports/clients/clients.component";
 
 
 import { AccordionModule } from "primeng/accordion";
@@ -32,7 +34,7 @@ import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, LoginComponent, MenuComponent, ClientsComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, LoginComponent, MenuComponent, ClientsComponent, ClientsReportComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,7 +53,8 @@ import {CalendarModule} from 'primeng/calendar';
     PaginatorModule,
     ConfirmDialogModule,
     DialogModule,
-    CalendarModule
+    CalendarModule,
+    DropdownModule
   ],
   providers: [LoginService, ClientsService
 ],
