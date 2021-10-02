@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Clients } from '../components/views/cadastro/clients/clients.model';
@@ -23,9 +23,18 @@ export class ClientsService {
     return this.http.delete(url).pipe();
   }
 
-  updateClient(client: Clients){
-    const url = `${this.baseUrl}/clients/${client.id}`;
+  updateClient(id: String, client: Clients){
+    const url = `${this.baseUrl}/clients/${id}`;
     return this.http.put(url, client).pipe();
+  }
+
+  addClient(client: Clients){
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+
+    const url = `${this.baseUrl}/clients`;
+    return this.http.post(url, client, httpOptions).pipe();
   }
 
 }

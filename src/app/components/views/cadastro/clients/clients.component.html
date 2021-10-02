@@ -38,7 +38,7 @@
        
         <div class="p-col-fixed" style="width:150px; margin: 10px 20px 20px 0">
             <span class="p-float-label p-input-icon-right">
-                <p-inputMask inputId="id" mask="999.999?" [autoClear]="false" [readonly]="true" [ngModel]="id"></p-inputMask>
+                <p-inputMask inputId="id" mask="999.999?" [autoClear]="false" [readonly]="true" [(ngModel)]="id"></p-inputMask>
                 <label for="id">Código</label>
             </span>
         </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="p-col-fixed" style="width:220px; margin: 10px 20px 20px 0">
             <span class="p-float-label p-input-icon-right">
-                <p-inputMask inputId="rg" mask="9.999.999-9" [(ngModel)]="rg"></p-inputMask> 
+                <p-inputMask inputId="rg" mask="9.999.999-9" [unmask]="true" [(ngModel)]="rg"></p-inputMask> 
                 <label for="rg">RG</label>
             </span>
         </div>
@@ -87,7 +87,7 @@
         </div>
         <div class="p-col-fixed" style="width:200px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-inputMask inputId="cep" mask="99999-999" [(ngModel)]="cep"></p-inputMask> 
+                <p-inputMask inputId="cep" mask="99999-999" [unmask]="true" [(ngModel)]="cep"></p-inputMask> 
                 <label for="cep">CEP</label>
             </span>
         </div>
@@ -105,13 +105,13 @@
         </div>
         <div class="p-col-fixed" style="width:200px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-inputMask inputId="phone" mask="(99) 9999-9999" [(ngModel)]="phone"></p-inputMask>
+                <p-inputMask inputId="phone" mask="(99)9999-9999" [unmask]="true" [(ngModel)]="phone"></p-inputMask>
                 <label for="phone">Telefone</label>
             </span>
         </div>
         <div class="p-col-fixed" style="width:200px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-inputMask inputId="cellphone" mask="(99)9 9999-9999" [(ngModel)]="cellphone"></p-inputMask>
+                <p-inputMask inputId="cellphone" mask="(99)99999-9999" [unmask]="true" [(ngModel)]="cellphone"></p-inputMask>
                 <label for="cellphone">Celular</label>
             </span>
         </div>
@@ -123,6 +123,6 @@
         </div>
     </div>
     <span class="p-buttonset">
-        <button pButton type="button" label="Salvar" icon="pi pi-check" class="p-button-success save" (click)="saveClient()"></button>
+        <button pButton type="button" label="Salvar" icon="pi pi-check" class="p-button-success save" (click)="setAction()"></button>
     </span>
 </p-dialog>

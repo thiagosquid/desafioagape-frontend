@@ -37,6 +37,8 @@ export class ClientsComponent implements OnInit {
     title: string = "Edição de Cliente";
     maxDateValue: Date;
 
+    isEditing: boolean = false;
+
 
     constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) {
         this.maxDateValue = new Date(); }
@@ -45,12 +47,40 @@ export class ClientsComponent implements OnInit {
         this.getClients(this.currentPage);    
     }
 
-    saveClient(): any{
+    setAction(): any{
 
-        let clientToSave: Clients = new Clients("", this.name, this.cpf, this.rg, this.date.toLocaleDateString(), this.address == undefined ? "" : "", this.complement == undefined ? "" : "", this.district, this.cep, this.city, this.uf, this.phone == undefined ? "" : "", this.cellphone, this.observation == undefined ? "" : "");
-        console.log(clientToSave);
+        let clientToSave: Clients = new Clients(
+            "",
+            this.name,
+            this.cpf,
+            this.rg,
+            this.date.toLocaleDateString(),
+            this.address == undefined ? "" : this.address,
+            this.complement == undefined ? "" : this.complement,
+            this.district,
+            this.cep,
+            this.city,
+            this.uf,
+            this.phone == undefined ? "" : this.phone,
+            this.cellphone,
+            this.observation == undefined ? "" : this.observation);
+
+        if(this.isEditing){
+            this.updateClient(this.id?.replace(".",""), clientToSave);
+        }else{
+            this.addClient(clientToSave);
+        }
         this.display = false;
+
         
+    }
+
+    updateClient(id: any, client: Clients){
+        this.service.updateClient(id, client).subscribe(sucess => this.ngOnInit())
+    }
+
+    addClient(client: Clients){
+        this.service.addClient(client).subscribe(sucess => this.ngOnInit());
     }
 
     getClients(index: number) {
@@ -68,7 +98,7 @@ export class ClientsComponent implements OnInit {
     }
 
     editClient(clientSelected: Clients){
-
+        this.isEditing = true;
         this.edit(clientSelected);
     }
 
@@ -87,10 +117,6 @@ export class ClientsComponent implements OnInit {
                 const dateClient = clientSelected.birthdate.split("-");
                 this.date = new Date(dateClient[0], dateClient[1]-1, dateClient[2]);
                 this.id = this.pad(clientSelected.id);
-                // let s = this.id+"";
-                // while (s.length < 6) s = "0" + s;
-
-                // this.id = s;
                 this.name = clientSelected.name;
                 this.cpf = clientSelected.cpf;
                 this.address = clientSelected.address;
@@ -105,21 +131,21 @@ export class ClientsComponent implements OnInit {
                 this.observation = clientSelected.observation;
 
                 this.display = true;
-                this.messageService.add({severity:'info', summary:'Confirmado', detail:'Usuário Editado'});
-            },
-            reject: (type: any) => {
-                switch(type) {
-                    case ConfirmEventType.ACCEPT:
-                        this.messageService.add({severity:'error', summary:'Aceito', detail:'Você editou!'});
-                    break;
-                    case ConfirmEventType.CANCEL:
-                        this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou a edição'});
-                    break;
-                    case ConfirmEventType.REJECT:
-                        this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou a edição'});
-                    break;
-                }
+                // this.messageService.add({severity:'info', summary:'Confirmado', detail:'Usuário Editado'});
             }
+        //     reject: (type: any) => {
+        //         switch(type) {
+        //             case ConfirmEventType.ACCEPT:
+        //                 this.messageService.add({severity:'error', summary:'Aceito', detail:'Você editou!'});
+        //             break;
+        //             case ConfirmEventType.CANCEL:
+        //                 this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou a edição'});
+        //             break;
+        //             case ConfirmEventType.REJECT:
+        //                 this.messageService.add({severity:'warn', summary:'Cancelado', detail:'Você cancelou a edição'});
+        //             break;
+        //         }
+        //     }
         });
     }
     delete(_id: any, name: string) {
@@ -147,6 +173,7 @@ export class ClientsComponent implements OnInit {
     }
     
     newClient(){
+        this.isEditing = false;
         this.display = true;
         this.date = new Date();
         this.id = ""; 
@@ -162,6 +189,7 @@ export class ClientsComponent implements OnInit {
         this.phone = "";
         this.cellphone = "";
         this.observation = "";
+
     }
 
     pad(value: string){
