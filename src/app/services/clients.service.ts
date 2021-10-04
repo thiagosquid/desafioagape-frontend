@@ -18,6 +18,11 @@ export class ClientsService {
     return this.http.get<Clients[]>(url);
   }
 
+  getAllClients(): Observable<Clients[]> {
+    const url = `${this.baseUrl}/clients/all`;
+    return this.http.get<Clients[]>(url);
+  }
+
   deleteClient(id: number) {
     const url = `${this.baseUrl}/clients/${id}`;
     return this.http.delete(url).pipe();

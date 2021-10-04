@@ -1,15 +1,15 @@
 <p>clients works!</p>
 
-<p-dropdown [options]="clients" [(ngModel)]="selectedClient" [filter]="true" filterBy="code,name" [showClear]="true" placeholder="Escolha um Cliente">
+<p-dropdown [options]="clients" [(ngModel)]="selectedClient" [filter]="true" filterBy="id,name" [showClear]="true" placeholder="Escolha um Cliente">
     <ng-template pTemplate="selectedItem">
         <div class="client-item client-item-value" *ngIf="selectedClient">
-            <div>{{selectedClient.code + " " + selectedClient.name}}</div>
+            <div>{{selectedClient.id + " " + selectedClient.name}}</div>
         </div>
     </ng-template>
 
     <ng-template let-client pTemplate="item">
         <div class="client-item">
-            <div>{{client.code + " " + client.name}}</div>
+            <div>{{client.id + " " + client.name}}</div>
         </div>
     </ng-template>
 </p-dropdown>
