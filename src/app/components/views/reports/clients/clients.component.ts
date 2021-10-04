@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DropdownModule} from 'primeng/dropdown';
+import { ClientsReportService } from 'src/app/services/clients-report.service';
 import { ClientsService } from 'src/app/services/clients.service';
 import { Clients } from '../../cadastro/clients/clients.model';
 
@@ -14,7 +15,7 @@ export class ClientsReportComponent implements OnInit {
   selectedClient!: Clients;
   clients!: Clients[];
 
-  constructor(private clientsService: ClientsService) { 
+  constructor(private clientsService: ClientsService, private reportService: ClientsReportService) { 
 
   }
 
@@ -26,7 +27,8 @@ export class ClientsReportComponent implements OnInit {
     if(this.selectedClient){
       console.log(this.selectedClient)
     }else{
-      console.log(this.clients)
+      this.reportService.requestReportAllClients().subscribe();
+      alert("Relatório Gerado")
     }
   }
 

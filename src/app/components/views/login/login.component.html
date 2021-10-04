@@ -1,15 +1,15 @@
 <div>
   <span id="form">
     <span class="p-float-label">
-      <p-inputMask [(ngModel)]="usercode" mask="999.999" slotChar="0" tabindex="543210" class="input"></p-inputMask>
+      <p-inputMask [(ngModel)]="usercode" inputId="id" mask="999.999" slotChar="0" tabindex="543210" class="input" [required]="true"></p-inputMask>
       <label for="float-input-invalid">Login</label>
     </span>
     <span id="btpass" class="p-float-label">
-      <p-password [(ngModel)]="password" [feedback]="false" [toggleMask]="true" required></p-password>
+      <p-password [(ngModel)]="password" [feedback]="false" [toggleMask]="true" [required]="true"></p-password>
       <label for="float-input-invalid">Senha</label>
     </span>
-    <button pButton pRipple type="button" label="Entrar" class="p-button-primary" (click)="verifyLogin()"></button>
-    <button pButton type="button" label="Cancelar" class="p-button-danger"></button>
+    <button pButton pRipple type="button" label="Entrar" class="p-button-primary" (click)="verifyLogin()" [disabled]="!usercode || !password"></button>
+    <button pButton type="button" label="Cancelar" class="p-button-danger" ></button>
   </span>
   
 </div>

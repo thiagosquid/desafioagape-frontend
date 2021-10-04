@@ -76,6 +76,7 @@ export class MenuComponent implements OnInit {
     }
 
     deslogar(){
+        localStorage.clear();
         this.eventLogout.emit("Deslogar")
     }
 }

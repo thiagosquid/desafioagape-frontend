@@ -17,12 +17,10 @@ export class AppComponent implements OnInit {
 
   logout(){
     this.userActive = false;
-    console.log("to saindo")
   }
 
   login(){
     this.userActive = true;
-    console.log("to entrando")
   }
 
 }
