@@ -34,20 +34,21 @@ export class ClientsComponent implements OnInit {
     observation?: string;
     date!: Date;
 
-    title: string = "Edição de Cliente";
+    title!: string;
     maxDate!: Date;
-    minDate!: Date;
-
+    minDate: Date =  new Date(1950, 0, 1,0,0,0,0);
+    myYearRange!: string;
     isEditing: boolean = false;
 
 
-    constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
-
+    constructor(private service: ClientsService, private confirmationService: ConfirmationService, private messageService: MessageService) {
+        
+    }
+    
     ngOnInit() {        
-        this.minDate = new Date(1950, 0, 1);
         this.maxDate = new Date();
-        console.log(this.maxDate)
-        console.log(this.minDate)
+        this.myYearRange = `${this.minDate.getFullYear()}:${this.maxDate.getFullYear()}`;
+        this.maxDate.setHours(0,0,0,0);
         this.getClients(this.currentPage);    
     }
 
@@ -102,6 +103,7 @@ export class ClientsComponent implements OnInit {
     }
 
     editClient(clientSelected: Clients){
+        this.title = "Edição de Cliente"
         this.isEditing = true;
         this.edit(clientSelected);
     }
@@ -177,6 +179,7 @@ export class ClientsComponent implements OnInit {
     }
     
     newClient(){
+        this.title = "Novo Cliente"
         this.isEditing = false;
         this.display = true;
         this.date = new Date();

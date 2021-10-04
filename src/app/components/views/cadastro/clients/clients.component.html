@@ -51,7 +51,7 @@
         </div>
         <div class="p-col-fixed" style="width:250px; margin: 10px 20px 20px 0">
             <span class="p-float-label">
-                <p-calendar [monthNavigator]="true" [yearNavigator]="true" [minDate]="minDate" [maxDate]="maxDate" inputId="navigators" [(ngModel)]="date" dateFormat="dd/mm/yy" [baseZIndex]=0></p-calendar>
+                <p-calendar [monthNavigator]="true" [yearNavigator]="true" [minDate]="minDate" [maxDate]="maxDate" [readonlyInput]="true" inputId="navigators" [(ngModel)]="date" dateFormat="dd/mm/yy" [yearRange]="myYearRange" [baseZIndex]=0></p-calendar>
                 <label for="calendar">Nascimento</label>
             </span>
         </div>
@@ -123,6 +123,6 @@
         </div>
     </div>
     <span class="p-buttonset">
-        <button pButton type="button" label="Salvar" icon="pi pi-check" class="p-button-success save" (click)="setAction()"></button>
+        <button pButton type="button" label="Salvar" icon="pi pi-check" class="p-button-success save" (click)="setAction()"  [disabled]="!name || !cpf || !rg || !address || !district || !city || !uf || !cellphone"></button>
     </span>
 </p-dialog>

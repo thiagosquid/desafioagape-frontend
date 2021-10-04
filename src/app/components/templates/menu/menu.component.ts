@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -10,6 +10,11 @@ export class MenuComponent implements OnInit {
   
     items!: MenuItem[];
     visible: boolean = true;
+
+    @Output()
+    eventLogout = new EventEmitter();
+
+    constructor(){}
 
     ngOnInit() {
         this.items = [
@@ -63,8 +68,14 @@ export class MenuComponent implements OnInit {
             {
                 label: 'Sair',
                 icon: 'pi pi-fw pi-power-off',
-                routerLink: 'menu'
+                command: ()=>{
+                    this.deslogar();
+                }
             }
         ];
+    }
+
+    deslogar(){
+        this.eventLogout.emit("Deslogar")
     }
 }

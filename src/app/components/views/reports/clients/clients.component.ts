@@ -23,6 +23,11 @@ export class ClientsReportComponent implements OnInit {
   }
 
   print(){
+    if(this.selectedClient){
+      console.log(this.selectedClient)
+    }else{
+      console.log(this.clients)
+    }
   }
 
   getclients(){

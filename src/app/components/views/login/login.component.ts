@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 
 @Component({
@@ -10,6 +10,9 @@ export class LoginComponent implements OnInit {
   usercode!: String;
   password!: String;
 
+  @Output()
+  eventLogin = new EventEmitter();
+
   constructor(private service: LoginService) { }
 
   ngOnInit(): void {
@@ -17,16 +20,21 @@ export class LoginComponent implements OnInit {
   
   verifyLogin(){
     this.usercode = this.usercode.replace(".",'');
-    console.log(this.usercode)
     if(this.usercode.length != 0 && this.password.length != 0){
       
       let id: number = Number(this.usercode)
       let res: any;
       this.service.verifyLogin(id.toString(), this.password).subscribe((response) =>{
         res = response;
-        console.log(res)
+        localStorage.setItem("userActive","true");
+        this.login();
       },err => res = false);
 
     }
-  }    
+  } 
+
+  login(){
+    this.eventLogin.emit();
+  }
+  
 }

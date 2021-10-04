@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Clients } from '../components/views/cadastro/clients/clients.model';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Clients } from '../components/views/cadastro/clients/clients.model';
 })
 export class ClientsService {
 
-  baseUrl: String = 'http://localhost:8080';
+  baseUrl: String = environment.baseURL;
   
   constructor(private http: HttpClient) { }
 
