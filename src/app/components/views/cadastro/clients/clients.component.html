@@ -1,9 +1,19 @@
 <div class="table">
     
+    
     <p></p>
     <p-button class="addClient" label="Novo" icon="pi pi-plus" iconPos="left" (onClick)="newClient()"></p-button>
     <p></p>
-    <p-table [value]="clients" responsiveLayout="scroll" [rows]="10" [showCurrentPageReport]="true">
+    <p-table #dt2 [value]="clients" responsiveLayout="scroll" [rows]="10" [showCurrentPageReport]="true" [paginator]="true" currentPageReportTemplate="Exibindo {first} de {last} de um total de {totalRecords}"
+	[globalFilterFields]="['idCode','name','cpf']">
+        <!-- <ng-template pTemplate="caption">
+            <div class="p-d-flex">
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($event.target, 'contains')" placeholder="Filtrar"/>
+                </span>
+            </div>
+        </ng-template> -->
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th class="idCode">Código</th>
@@ -11,6 +21,16 @@
                 <th class="cpf">CPF</th>
                 <th class="actions">Ações</th>
             </tr>
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="id"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="name"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="cpf"></p-columnFilter>
+                </th>
         </ng-template>
         <ng-template pTemplate="body" let-row >
             <tr>
@@ -25,7 +45,7 @@
         </ng-template>
 
     </p-table>
-    <p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" ></p-paginator>
+    <!-- <p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" ></p-paginator> -->
 
 </div>
 

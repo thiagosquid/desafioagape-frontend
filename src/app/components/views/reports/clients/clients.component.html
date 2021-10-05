@@ -1,16 +1,17 @@
-<p>clients works!</p>
-
-<p-dropdown [options]="clients" [(ngModel)]="selectedClient" [filter]="true" filterBy="id,name" [showClear]="true" placeholder="Escolha um Cliente">
-    <ng-template pTemplate="selectedItem">
-        <div class="client-item client-item-value" *ngIf="selectedClient">
-            <div>{{selectedClient.id + " " + selectedClient.name}}</div>
-        </div>
-    </ng-template>
-
-    <ng-template let-client pTemplate="item">
-        <div class="client-item">
-            <div>{{client.id + " " + client.name}}</div>
-        </div>
-    </ng-template>
-</p-dropdown>
-<button pButton pRipple type="button" label="Imprimir" class="p-button-primary" (click)="print()"></button>
+<div class="box">
+    <p>Gerar Relatório em PDF</p>
+    <p-dropdown [options]="clients" [(ngModel)]="selectedClient" [filter]="true" filterBy="id,name" [showClear]="true" placeholder="Escolha um Cliente">
+        <ng-template pTemplate="selectedItem">
+            <div class="client-item client-item-value" *ngIf="selectedClient">
+                <div>{{selectedClient.id + " " + selectedClient.name}}</div>
+            </div>
+        </ng-template>
+    
+        <ng-template let-client pTemplate="item">
+            <div class="client-item">
+                <div>{{client.id + " - " + client.name}}</div>
+            </div>
+        </ng-template>
+    </p-dropdown>
+    <button pButton pRipple type="button" label="Imprimir" class="p-button-primary" (click)="print()"></button>
+</div>

@@ -1,7 +1,13 @@
 <div>
+  <picture>
+    <img src="https://prohair.vteximg.com.br/arquivos/BONECO2.png" alt="Imagem de boneco de pessoa" srcset="">
+  </picture>
+  <br>
   <span id="form">
+    <p-messages [(value)]="error" [enableService]="false" class="message"></p-messages>
+    <br>
     <span class="p-float-label">
-      <p-inputMask [(ngModel)]="usercode" inputId="id" mask="999.999" slotChar="0" tabindex="543210" class="input" [required]="true"></p-inputMask>
+      <p-inputMask [(ngModel)]="usercode" inputId="id" mask="999.999" class="input" [required]="true"></p-inputMask>
       <label for="float-input-invalid">Login</label>
     </span>
     <span id="btpass" class="p-float-label">
@@ -11,5 +17,4 @@
     <button pButton pRipple type="button" label="Entrar" class="p-button-primary" (click)="verifyLogin()" [disabled]="!usercode || !password"></button>
     <button pButton type="button" label="Cancelar" class="p-button-danger" ></button>
   </span>
-  
 </div>

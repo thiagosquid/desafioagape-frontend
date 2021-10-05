@@ -30,6 +30,8 @@ import {PaginatorModule} from 'primeng/paginator';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
 import {CalendarModule} from 'primeng/calendar';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 
@@ -54,7 +56,9 @@ import {CalendarModule} from 'primeng/calendar';
     ConfirmDialogModule,
     DialogModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [LoginService, ClientsService
 ],

@@ -25,7 +25,8 @@ export class ClientsReportComponent implements OnInit {
 
   print(){
     if(this.selectedClient){
-      console.log(this.selectedClient)
+      this.reportService.requestReportOneClient(this.selectedClient.id).subscribe();
+      alert("Relatório Gerado")
     }else{
       this.reportService.requestReportAllClients().subscribe();
       alert("Relatório Gerado")

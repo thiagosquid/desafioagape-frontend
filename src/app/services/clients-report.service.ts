@@ -14,4 +14,10 @@ export class ClientsReportService {
     const url = `${this.baseUrl}/clients/report`;
     return this.http.get(url);
   }
+
+  requestReportOneClient(id?: string){
+    const url = `${this.baseUrl}/clients/report/${id}`;
+    return this.http.get(url);
+  }
+
 }

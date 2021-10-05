@@ -59,7 +59,7 @@ export class ClientsComponent implements OnInit {
             this.name,
             this.cpf,
             this.rg,
-            this.date.toLocaleDateString(),
+            this.birthdate = this.date.toLocaleDateString(),
             this.address == undefined ? "" : this.address,
             this.complement == undefined ? "" : this.complement,
             this.district,
@@ -70,9 +70,13 @@ export class ClientsComponent implements OnInit {
             this.cellphone,
             this.observation == undefined ? "" : this.observation);
 
+            
+
         if(this.isEditing){
             this.updateClient(this.id?.replace(".",""), clientToSave);
         }else{
+            console.log(this.date);
+            console.log(this.birthdate);
             this.addClient(clientToSave);
         }
         this.display = false;
@@ -89,7 +93,7 @@ export class ClientsComponent implements OnInit {
     }
 
     getClients(index: number) {
-        this.service.getClients(index).subscribe((response) => {
+        this.service.getClients().subscribe((response) => {
             let data: any = response;
             this.totalRecords = data.totalElements;
             this.clients = data.content;
@@ -120,8 +124,8 @@ export class ClientsComponent implements OnInit {
             header: 'Confirmação',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                const dateClient = clientSelected.birthdate.split("-");
-                this.date = new Date(dateClient[0], dateClient[1]-1, dateClient[2]);
+                const dateClient = clientSelected.birthdate.split("\/");
+                this.date = new Date(dateClient[2], dateClient[0]-1, dateClient[1]);
                 this.id = this.pad(clientSelected.id);
                 this.name = clientSelected.name;
                 this.cpf = clientSelected.cpf;
@@ -203,6 +207,9 @@ export class ClientsComponent implements OnInit {
         return  ("000000" + value).slice(-6).slice(0,3)+"."+("000000" + value).slice(-3)
     }
 
+    filter(){
+
+    }
     
 }
 

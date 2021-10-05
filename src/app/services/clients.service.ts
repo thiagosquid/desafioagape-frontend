@@ -13,12 +13,12 @@ export class ClientsService {
   
   constructor(private http: HttpClient) { }
 
-  getClients(index: number): Observable<Clients[]> {
-    const page: String = `?page=${index}&size=10&sort=id`
+  getClients(): Observable<Clients[]> {
+    const page: String = `?size=all&sort=id`
     const url = `${this.baseUrl}/clients${page}`;
     return this.http.get<Clients[]>(url);
   }
-
+  
   getAllClients(): Observable<Clients[]> {
     const url = `${this.baseUrl}/clients/all`;
     return this.http.get<Clients[]>(url);
